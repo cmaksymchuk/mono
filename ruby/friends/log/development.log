@@ -1,0 +1,39 @@
+Started GET "/" for ::1 at 2022-06-05 20:00:17 -0500
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/cory/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/cory/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/railties-7.0.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.3ms | Allocations: 644)
+Completed 200 OK in 35ms (Views: 14.0ms | ActiveRecord: 0.0ms | Allocations: 5021)
+
+
+Started GET "/home/index" for ::1 at 2022-06-05 20:10:03 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 148)
+  Rendered layout layouts/application.html.erb (Duration: 895.4ms | Allocations: 89048)
+Completed 200 OK in 900ms (Views: 898.0ms | Allocations: 90079)
+
+
+Started GET "/home/index" for ::1 at 2022-06-05 20:13:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/home/index"):
+  
+Started GET "/" for ::1 at 2022-06-05 20:14:02 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 26)
+  Rendered layout layouts/application.html.erb (Duration: 57.4ms | Allocations: 13747)
+Completed 200 OK in 65ms (Views: 63.5ms | Allocations: 14389)
+
+
+Started GET "/" for ::1 at 2022-06-05 20:15:48 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 150)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 2972)
+Completed 200 OK in 14ms (Views: 12.3ms | Allocations: 3828)
+
+
