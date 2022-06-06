@@ -1,0 +1,57 @@
+Shopify Interview Questions
+Shopping Cart Discount - Build a shopping cart with discounts
+Inventory - Given Locations with certian amounts of goods, which ones can fullfill the orders. write a method to return inventory names which can provide an order
+
+Space Ship - 2. Building a CLI too for google's mars rover challenge.
+SpaceShip
+SpaceShipApp
+SpaceShipInterface
+SpaceShipRunner'
+
+
+
+Robot that travels on a 2d grid and etc.
+Given this sorted string list. Write a code that will split and sort it using specific rules.
+
+Build a product checkout with different pricing scenarios
+ShoppingCart
+Discount
+Item
+BuyOneGetOneFreeApples
+
+
+
+design a Shopify app extension
+
+
+
+
+Design robot movement in 2d space
+
+
+
+Tips to prepare for the interview
+1. No need to stress yourself for complex data structures and algorithms
+2. You are allowed to use the internet and check any documentation as no one can remember the syntax completely.
+3. Make sure you focus a lot of TDD. I think every interviewer expects that you share some set of extensive test cases/path before writing the code.
+4. Don't forget to tell them in detail why are you making each class and method. I tried to explain while coding but in the feedback, I was not vocal enough.
+
+Pair programming included a URL shortener problem and the other code refactoring.
+UrlShortener
+
+N Interations on Conways game of life
+GameOfLifeFunction takes a value and a count of neighbors, returns new value
+GameOfLifeFunctionTest
+GameOfLifeBoard
+
+Write a console app: given some locations with the certain amount of certain goods, list 
+all of them that can fulfill the order of products of certain amount.
+InventoryAllocatorTest
+InventoryAllocator
+Shipments
+Warehouse
+Order
+
+
+
+https://www.reddit.com/r/learnprogramming/comments/mg4lxh/shopify_interview_question_using_oop/ - CommandParser
