@@ -18,3 +18,4 @@ git config --global --list
 
 -- table name is friends
 cory@Corys-MacBook-Pro friends % rails g scaffold friends first_name:string last_name:string phone:string email:string twitter:string
+cory@Corys-MacBook-Pro friends % rails db:migrate
