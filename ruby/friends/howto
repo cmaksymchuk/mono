@@ -10,3 +10,11 @@ cory@Corys-MacBook-Pro friends % rails g controller home index
       create    app/helpers/home_helper.rb
       invoke    test_unit
 
+rails s
+
+rails routes
+
+git config --global --list
+
+-- table name is friends
+cory@Corys-MacBook-Pro friends % rails g scaffold friends first_name:string last_name:string phone:string email:string twitter:string
