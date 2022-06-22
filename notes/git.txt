@@ -1,0 +1,80 @@
+# ============================== When git it not authenticating
+> git config --list --show-origin
+
+# ============================== Git is changing file mode as changes
+> git config core.filemode false
+
+# ============================== 403
+* http://wiki.shr.mbc/index.php/Git_Setup#General_Configuration
+# In general you should not have these in the system or global configuration files. That would limit you to use only one authentication method. This can be a problem if you use CodeCommit, GitHub, Bitbucket,... or other Git services at the same time. These parameters should live in the projects. Unfortunately some Git clients will ship with these parameters already added to the system files. You can remove them with the following commands:
+
+git config --unset-all --system credential.helper
+git config --unset-all --system credential.usehttppath
+git config --unset-all --system credential.https://dev.azure.com.usehttppath
+# If you already have these parameters in you user config file, you can remove them with these commands:
+
+git config --unset-all --global credential.helper
+git config --unset-all --global credential.usehttppath
+git config --unset-all --global credential.https://dev.azure.com.usehttppath
+# Then, all you need to do is run the following commands to add them to the project that you are currently in:
+
+git config credential.helper '!aws --profile git codecommit credential-helper $@' 
+git config credential.usehttppath true
+
+# # ============================== Great video on interactive rebase, cherry pick, reflog, recovering deleted branches, adding submodules
+https://www.youtube.com/watch?v=qsTthZi23VE&ab_channel=freeCodeCamp.org
+
+# ============================== Git pull or merge or rebase fails
+git merge --abort
+# or
+git rebase --abort
+
+# ============================== Advanced Git Kit
+# https://www.git-tower.com/learn/git/advanced-git-kit/
+# https://stackoverflow.com/questions/101752/i-ran-into-a-merge-conflict-how-can-i-abort-the-merge
+
+# ============================== Undo the last commit.  HEAD~1 means 1 behind head
+git reset --hard HEAD~1
+# or
+git reset --hard XXXXXX
+# where XXXX is the commit has  you want to go back to.
+
+# ============================== If a commit was in the wrong branch, switch to the branch 
+# you want it to be in, get the commit hash from the branch it was accidentally committed in
+git cherry-pick b6d43b34
+# Note that after you do this, you will need to remove the commit from the branch it was committed to as well (see above reset --hard)
+
+# ============================== The Reflog
+git reflog
+# A log of all commits 
+
+# ============================== Creating a branch from a commit hash
+git branch branch-name XXXXXX
+
+# if you delete a branch by accidentally
+git reflog
+# now look back to the last action you performed on that branch, get the commit hash
+git branch oldbranchname commithash of last thing you did on that branch  Look 
+
+# ============================== Adding a submodules
+# This is cool because the remote repo for our local repo will not contain the submodule, only a reference.  Vid above is good.
+# from inside repo
+mkdir lib
+cd lib
+git add submodule <clone url>
+# it will add a .gitmodules, .git/config entry, .git/modules/lib/reponame
+# if you clone a repo with a submodule
+git clone someproject
+cd someproject
+git submodule update --init --recursive
+# or
+git clone --recurse-submodules somerepoclonedir
+
+
+# ============================== Searching Git
+git log --after="2020-1-1" --before="2022-1-1"
+git log --author="cmaksym"
+# any commit that contained readme.md
+git log -- readme.md 
+# all commits that are in main but not in feature/login
+git log feature/login..main

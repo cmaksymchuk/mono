@@ -1,0 +1,322 @@
+cas
+
+root@/mnt/dev/ws-stoploss/cas-root : ./gradlew spotlessApply
+
+./gradlew dockerComposeUp
+
+from within cas:core
+docker-compose -f sqlserver-compose.yml up -d 
+
+./gradlew loadTestDb
+
+benefits admin
+
+// gradlew :benefits-admin-local:rebel --stacktrace
+// gradlew :benefits-admin-local:war :benefits-admin-local:build
+
+./gradlew testContainersStart
+./gradlew testContainersStop
+
+=====
+./gradlew dockerComposeUp
+./gradlew dockerComposeDown
+
+docker logs 234523 -f
+
+docker exec -it xxxx bash
+
+if gradle locked
+root@/mnt/dev/ws-stoploss/cas-root : find ~/.gradle -type f -name "*.lock" -delete
+
+
+
+===== remove stopped docker container 
+docker container rm f8sdkjddje
+
+
+================ deploying
+
+
+mbc ecs deploy-service coreapps1 integration
+pick your branch
+mbc ecs restart-service coreapps1 integration
+
+
+mbc ecs deploy-service coreapps1 integration
+
+pick your branch
+mbc ecs restart-service coreapps1 integrationb
+
+
+mbc aws show-auth
+aws-te-dev-access
+
+
+mbc ecs describe-service coreapps1 integration
+mbc ecs describe-service coreapps1 experience
+
+
+==================== error
+ERROR: for sqlserver  Cannot create container for service sqlserver: Conflict. The container name "/mbc-sqlserver" is already in use by container "9160386de81eceacfc74f32853f2162b249ff474e4f061bcb49725a26ba4e208". You have to remove (or rename) that container to be able to reuse that name.
+ERROR: Encountered errors while bringing up the project.
+
+FIX: docker rm 9160
+
+Why doesn't docker system prune work? Because docker system prune' is not removing stopped containers. You can try to use 'docker container prune'
+
+============================
+
+mbc aws auth-git
+
+
+git status
+git diff
+root@/mnt/dev/infrastructure (master) : git branch cm-aaa-ftpuser
+root@/mnt/dev/infrastructure (master) : git checkout cm-aaa-ftpuser
+M       infrastructure-live/me/ca-central-1/me/supportingapps/sftp/terragrunt.hcl
+Switched to branch 'cm-aaa-ftpuser'
+
+
+git add -A
+
+root@/mnt/dev/infrastructure (cm-aaa-ftpuser) : git commit -m "added ftp user for AAA Alarms"
+[cm-aaa-ftpuser 63cae691] added ftp user for AAA Alarms
+ 1 file changed, 1 insertion(+)
+
+git push (it won't know where to push)
+
+git push --set-upstream origin cm-aaa-ftpuser
+
+Enumerating objects: 116, done.
+Counting objects: 100% (116/116), done.
+Delta compression using up to 5 threads
+Compressing objects: 100% (31/31), done.
+Writing objects: 100% (76/76), 12.94 KiB | 946.00 KiB/s, done.
+Total 76 (delta 39), reused 61 (delta 31)
+To https://git-codecommit.ca-central-1.amazonaws.com/v1/repos/infrastructure
+ * [new branch]        cm-aaa-ftpuser -> cm-aaa-ftpuser
+Branch 'cm-aaa-ftpuser' set up to track remote branch 'cm-aaa-ftpuser' from 'origin'.
+
+
+Navigate to the directory with the module in it: /mnt/dev/infrastructure/infrastructure-live/me/ca-central-1/me/supportingaps/sftp (for example)
+
+Login as aws-build-acct-dev-access
+CodeCommit
+Repositories
+Infrastructure
+Create Pull Request
+
+
+======================================
+
+root@/mnt/dev/git/coreapps (master) : git pull origin master
+will pull changes from the origin remote, master branch and merge them to the local checked-out branch.
+
+git checkout -b branchname
+
+To see local branches, run this command:
+git branch
+To see remote branches, run this command:
+git branch -r
+To see all local and remote branches, run this command:
+git branch -a
+
+======================================
+
+finding a string
+/c = search string
+/s = current and all subdirs
+
+findstr /s /c:"mbc aws auth" *.txt
+
+======================================
+
+Sql server configuration manager
+
+C:\Windows\System32\SQLServerManager13.msc
+
+
+======================================
+
+delete git branches:
+
+// delete branch locally (for example cm-prod-ftp-aaa-sjr-gmoelle)
+git branch -d cm-prod-ftp-aaa-sjr-gmoelle
+
+// delete branch remotely
+git push origin --delete cm-prod-ftp-aaa-sjr-gmoelle
+
+=========================================
+
+pull latest docker image from aws ecr
+
+docker pull 541747732668.dkr.ecr.ca-central-1.amazonaws.com/mbc-sqlserver
+
+=========================================
+
+ME SFTP Keys
+
+Login to AWS Web
+Go to Systems Manager, Parameter store on left
+Edit the /mbc/sftp user
+Still relies on the terraform user being setup at infrastructure-live/me/ca-central-1/me/supportingapps/sftp/terragrunt.hcl but reads the actual key from here
+
+=========================================
+
+remove untracked changes in git
+https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git
+
+# git stash save --keep-index --include-untracked
+You don't need to include --include-untracked if you don't want to be thorough about it.
+After that, you can drop that stash with a 
+# git stash drop 
+command if you like.
+
+=========================================
+
+git rename/renaming local and remote branches
+
+https://linuxize.com/post/how-to-rename-local-and-remote-git-branch/
+
+Start by switching to the local branch which you want to rename:
+# git checkout <old_name>
+Rename the local branch by typing:
+# git branch -m <new_name>
+
+=========================================
+
+root@/mnt/dev/git/coreapps (dev-payroll-integration) : ./gradlew portal:localComposeDown --stacktrace
+root@/mnt/dev/git/coreapps (dev-payroll-integration) : ./gradlew portal:localComposeUp --stacktrace
+
+=========================================
+
+git remove local last commit
+
+git reset HEAD~
+
+=========================================
+
+to unstage: You can unstage files from the index using
+
+git reset HEAD -- path/to/file
+
+Just like git add, you can unstage files recursively by directory and so forth, so to unstage everything at once, run this from the root directory of your repository:
+
+git reset HEAD -- .
+
+Reverts local unstaged changes
+
+doesn't get rid of added files and directories
+git restore . 
+
+gets rid of everything including files and directories
+git clean -f -d 
+git checkout .
+
+=========================================
+
+Parameter Store Values for Cognito
+Sign in as ME Dev access 
+Parameter Store
+
+Viewing Yaml Files
+S3: manitoba-blue-cross-build-acct-artifacts-bucket
+/ca/bluecross/mb/.../client/...
+Build Account access
+
+
+
+July 15th
+[9:06 AM] John Vieira
+Signed in as ME-DEV Access
+For the Cognito stuff, click Services > Cognito > Manage User Pools > coreapps2.me.cas
+
+
+Cognito Resource Server
+Click App Integration
+Copy the Domain value. In our case it's https://coreapps2-me-cas.auth.ca-central-1.amazoncognito.com
+
+Cognito Client ID
+Click App clients
+Copy the App client id value. In our case it's 23lk5kpa5vrvm5pec88b8f2kjk
+Cognito Client Secret
+
+Click App clients
+Click Show Details
+Copy the App client secret value. In our case it's 1csgphm0fi79ufn4iblq7799740ejj6sp3vmvfohqbdqslhu2ncl
+For the API Gateway URL, click Services > Api Gateway
+
+CAS Api Gateway URL
+Select "api-cas.coreapps2
+Click Custom domain names
+Find "api-cas.coreapps2.me.bluecross.ca"
+The gotcha here is you have to append /cas to the URL, so in our case it should be https://api-cas.coreapps2.me.mb.bluecross.ca/cas
+  
+View Parameter Store Parameters: Sign in as ME Dev Access
+
+=========================================
+Reading from S3 Buckets, Copying files to them
+=========================================
+
+[11:46 AM] Anil Amarakoon
+    aws --endpoint-url=http://localhost:4572 s3 ls
+​[11:51 AM] Anil Amarakoon
+    
+
+aws --endpoint-url=http://localhost:4572 s3 ls s3://manitoba-blue-cross-cas-bucket/output
+
+​[11:53 AM] Anil Amarakoon
+    
+
+aws --endpoint-url=http://localhost:4572 s3 cp --recursive {​​​​​​​​sourceFolder}​​​​​​​​s3://manitoba-blue-cross-cas-bucket/output
+
+​[11:53 AM] Anil Amarakoon
+    
+
+aws --endpoint-url=http://localhost:4572 s3 cp --recursive {​​​​​​​​sourceFolder}​​​​​​​​ s3://manitoba-blue-cross-cas-bucket/output
+
+​[11:54 AM] Anil Amarakoon
+    create folder in /mnt/dev/ folder
+Edited​[11:57 AM] Anil Amarakoon
+    
+
+aws --endpoint-url=http://localhost:4572 s3 cp --recursive  output ​s3://manitoba-blue-cross-cas-bucket/output
+
+​[12:04 PM] Anil Amarakoon
+    ./gradlew   localstackComposeUp
+​[12:08 PM] Anil Amarakoon
+    aws --endpoint-url=http://host.docker.internal:4566 s3 ls --recursive
+
+=========================================
+Debugging Apps Remotely:
+=========================================
+
+http://wiki.mb.bluecross.ca/index.php/AWS_Development#Debugging_Apps_Remotely
+
+
+
+blakes presentation
+
+core file mode
+./gradlew :portal:tiTree <task>
+./gradlew :portal:tiMode <task>
+./gradlew :portal:localComposeUp --dry-run
+./gradlew :portal:localComposeUp --dry-run --no-build-cache
+
+==========================================
+merging a branch to master
+==========================================
+
+[1:05 PM] Tiffany Nguyen
+I dug up these notes from a while back:
+mbc git squash (squash all commits into 1)
+mbc git sync (fetch changes from master)
+git rebase master (rebase current branch onto newest master)
+git rebase --abort (if the rebase goes bad)
+git push (override remote branch with your changes)
+mbc git create-pull-request (create pull request)
+
+
+
+git config --list --show-origin
+git config --unset 
